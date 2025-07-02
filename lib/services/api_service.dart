@@ -15,4 +15,15 @@ class ApiService {
       throw Exception('Erro ao carregar filmes');
     }
   }
+
+  Future<List<dynamic>> getMovies() async {
+    final response = await http.get(Uri.parse('$_baseUrl/movie/popular?api_key=$_apiKey&language=pt-BR'));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return data['results'];
+    } else {
+      throw Exception('Erro ao carregar filmes');
+    }
+  }
 }
