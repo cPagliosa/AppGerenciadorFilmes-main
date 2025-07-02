@@ -5,8 +5,8 @@ class ApiService {
   static const String _apiKey = '5bec04789a366fa0865d913ae3b6dda5';
   static const String _baseUrl = 'https://api.themoviedb.org/3';
 
-  Future<List<dynamic>> getPopularMovies() async {
-    final response = await http.get(Uri.parse('$_baseUrl/movie/popular?api_key=$_apiKey&language=pt-BR'));
+  Future<List<dynamic>> getPopularMovies({int page = 1}) async {
+    final response = await http.get(Uri.parse('$_baseUrl/movie/popular?api_key=$_apiKey&language=pt-BR&page=$page'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
